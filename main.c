@@ -1,5 +1,6 @@
+//Hello
 #include <stdio.h>
-#define matrixSize 5
+#define n 5
 
 
 // 1 == 50,  98,  -4,  85,  -8;
@@ -10,63 +11,67 @@
 
 void PrintMatrix(int matrix[5][5])
 {
-    for(int PrintingLineIndex = 0; PrintingLineIndex < 30; PrintingLineIndex++)
+    for(int i = 0; i < 30; i++)
     {
         printf("-");
     }
     printf("\n");
-    for(int startIndex = 0; startIndex < 5; startIndex++)
+    for(int i = 0; i < 5; i++)
     {
-        for(int nextIndex = 0; nextIndex < 5; nextIndex++)
+        for(int j = 0; j < 5; j++)
         {
-            printf("%6d", matrix[startIndex][nextIndex]);
+            printf("%6d", matrix[i][j]);
         }
         printf("\n");
     }
 }
 
 
-void selectionSort (int matrix[matrixSize][matrixSize]){
-    int firstElement, secondElement = 0;
+void sort (int matrix[n][n]){
+    int i,j = 0;
     
-    int minimumIndex = 0;
-    int temporaryIndex;
+    int min = 0;
+    int tmp;
     
     
     
-    for (firstElement = 0; firstElement < matrixSize; firstElement++) {
+    for (i = 0; i < n; i++) {
         
-        for (secondElement = 0; secondElement < matrixSize; secondElement++) {
+        for (j = 0; j < n; j++) {
             
-            printf("a[%d][%d] = ", firstElement + 1, secondElement + 1);
+            printf("a[%d][%d] = ", i + 1, j + 1);
             
-            scanf("%d", & matrix[firstElement][secondElement]);
+            scanf("%d", & matrix[i][j]);
         }
         
     }
     
     
+    
     printf("\n");
+    
+    
+    
     
     printf("Введена Матриця\n");
     PrintMatrix(matrix);
     printf("\n");
     
-    for(int nextElement = 0; nextElement < 5; nextElement++)
+    for(int k = 0; k < 5; k++)
     {
-        for(int minimumElement = 0; minimumElement < 5; minimumElement++)
+        for(int i = 0; i < 5; i++)
         {
-            minimumIndex = minimumElement;
-            for(int selectedElement = minimumElement + 1; secondElement < 5; selectedElement++)
+            min = i;
+            for(int j = i + 1; j < 5; ++j)
             {
-                if(matrix[minimumIndex][nextElement] > matrix[selectedElement][nextElement])
-                    minimumIndex = selectedElement;
+                if(matrix[min][k] > matrix[j][k])
+                    min = j;
             }
-            if(matrix[minimumElement][nextElement] > matrix[minimumIndex][nextElement])
+            if(matrix[i][k] > matrix[min][k])
             {
-                temporaryIndex = matrix[minimumElement][nextElement];
-                matrix[minimumElement][nextElement] = matrix[minimumIndex][nextElement];
-                matrix[minimumIndex][nextElement] = temporaryIndex;
+                tmp = matrix[i][k];
+                matrix[i][k] = matrix[min][k];
+                matrix[min][k] = tmp;
             }
         }
     }
@@ -83,35 +88,35 @@ void selectionSort (int matrix[matrixSize][matrixSize]){
 int main() {
     
     
-    static int matrix[matrixSize][matrixSize];
+    static int matrix[n][n];
     
-    selectionSort(matrix);
-    
-    
+    sort(matrix);
     
     
-    int productOfMultipation [4] = {1, 1, 1, 1};
+    
+    
+    int Multiply[4] = {1, 1, 1, 1};
     for(int i = 0; i < 5; i++)
     {
         for(int j = i + 1; j < 5; j++)
         {
-            productOfMultipation[i] *= matrix[i][j];
+            Multiply[i] *= matrix[i][j];
         }
         
     }
     
     for(int i = 0; i < 4; i++)
     {
-        printf("\nРядок %d: % 6d\n",i + 1, productOfMultipation[i]);
+        printf("\nРядок %d: % 6d\n",i + 1, Multiply[i]);
     }
     
-    float averageAriphmetical = 0.0;
+    float avg = 0.0;
     
     for(int i = 0; i < 4; ++i)
-        averageAriphmetical += productOfMultipation[i];
-    averageAriphmetical /= 4;
+        avg += Multiply[i];
+    avg /= 4;
     
-    printf("Середнє Значення: %f\n", averageAriphmetical);
+    printf("Середнє Значення: %f\n", avg);
     
     
     
